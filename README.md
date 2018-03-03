@@ -30,6 +30,8 @@ and pop turtle states.
 * A class in which to store the VBOs that will represent __all__ of your faceted
 geometry. __Do not draw individual mesh components one at a time. This will
 cause your program to render very slowly.__ Instead, expand lists of vertex
+
+
 information as you "draw" your grammar, and push all VBO data to the GPU at once
 after you've finished parsing your entire string for drawing.
 
@@ -46,17 +48,17 @@ can either implement your own OBJ parser, or use an OBJ-loading package via NPM:
 ## Aesthetic Requirements
 Your plant must have the following attributes:
 * It must grow in 3D
-* It must have flowers, leaves, or some other branch decoration in addition to
+ rota* It must have flowers, leaves, or some other branch decoration in addition to
 basic branch geometry
 * Organic variation (i.e. noise or randomness in grammar expansion)
 * A flavorful twist. Don't just make a basic variation on the example broccoli
 grammar from the slides! Create a plant that is unique to you!
 
-Feel free to use the resources linked in the slides for inspiration!
 
+Feel free to use the resources linked in the slides for inspiration!
 ## Interactivity
 Using dat.GUI, make at least three aspects of your demo an interactive variable.
-For example, you could modify:
+"For example, you could modify:
 
 * The axiom
 * Your input grammar rules and their probability
@@ -86,3 +88,20 @@ geometry will never overlap. In other words, make your plant behave like a
 real-life plant so that its branches and other components don't compete for the
 same space. The more complex you make your L-system self-interaction, the more
 points you'll earn.
+
+## READ-ME
+PennKey: nmaga
+Live demo link: https://nmagarino.github.io/homework-4-l-systems-nmagarino/
+
+![](lsystemcap.PNG)
+
+For my L-system I used a series of aligned primitive cube shapes to form a tree.  I modeled my initial grammar expansion rules from a fractal plant example I found on wikipedia (https://en.wikipedia.org/wiki/L-system), and edited it from there.  In terms of implementation, I started off my grammar expansion L system logic from the base code provided in the previous CIS700 Procedural Graphics course (https://github.com/CIS700-Procedural-Graphics/Project3-LSystems), and followed along some student implementations.  More specifically, the grammar rules are as such:
+* "F" -> FF
+* "X" -> FFF[+FXF>F+F]FX[-FFX-FX<]X[+F>XFFF+]X>XF (a lot)
+* "X" -> does not affect turtle, only for expansion
+* "F" -> draw a shape forward along direction vector of turtle
+* "+" -> rotate turtle about z-axis by specified angle (positive)
+* "-" -> rotate turtle about z-axis by specified angle (negative)
+* ">" -> rotate turtle by angle along x (negative) OR y axis
+* "<" -> rotate turtle by angle along x (positive) OR y axis
+
